@@ -262,6 +262,82 @@ section:nth-of-type(even) {
   color: #fdfaf5;
   opacity: 0.8;
 }
+/* ===============================
+   SHOP – GRID DE PRODUTOS
+================================ */
+.shop-container {
+  padding: 80px 60px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/* CARD */
+.produto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* IMAGEM */
+.produto img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background-color: #eee;
+}
+
+/* TEXTO */
+.produto h3 {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.preco {
+  font-size: 0.75rem;
+  color: #3b2f2a;
+}
+
+/* BOTÃO */
+.botao-comprar {
+  margin-top: 8px;
+  text-decoration: none;
+  border: 1px solid #3b2f2a;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #3b2f2a;
+  transition: all 0.3s ease;
+}
+
+.botao-comprar:hover {
+  background-color: #3b2f2a;
+  color: #f6f1eb;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 1024px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .shop-container {
+    padding: 40px 20px;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* =========================
    RESPONSIVO
