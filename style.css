@@ -224,13 +224,10 @@ body {
 @media (max-width: 768px) {
 
   .menu {
-    flex-direction: column;
-    gap: 16px;
     padding: 24px;
   }
 
   .menu-list {
-    flex-direction: column;
     gap: 16px;
   }
 
