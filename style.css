@@ -1,75 +1,68 @@
-/* ================================
-   CONFIGURAÇÕES GERAIS
-================================ */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
-
-:root {
-  --marrom-escuro: #3b2f2f;
-  --marrom-medio: #6f4e37;
-  --marrom-claro: #e9e1d6;
-  --bege: #f6f1eb;
-}
-
+/* =========================
+   RESET + BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 0.08em;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--bege);
-  color: var(--marrom-escuro);
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdfaf5;
+  color: #3e352c;
+  text-align: center;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
 }
 
-/* ================================
-   MENU
-================================ */
+/* =========================
+   HEADER / MENU
+========================= */
 .menu {
-  width: 100%;
-  padding: 24px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--bege);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  padding: 32px 24px;
+  border-bottom: 1px solid rgba(62,53,44,0.08);
 }
 
 .logo {
-  height: 42px;
+  height: 48px;
+  margin-bottom: 16px;
 }
 
 .menu-list {
   list-style: none;
   display: flex;
-  gap: 36px;
+  justify-content: center;
+  gap: 40px;
 }
 
 .menu-list a {
   text-decoration: none;
-  color: var(--marrom-escuro);
-  font-size: 12px;
-  text-transform: lowercase;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #6b5e52;
+  transition: opacity 0.3s ease;
 }
 
 .menu-list a:hover {
   opacity: 0.6;
 }
 
-/* ================================
+/* =========================
    HERO / CAROUSEL
-================================ */
+========================= */
 .hero-carousel {
   width: 100%;
   height: 70vh;
-  background-color: var(--marrom-claro);
+  background-color: #e9e1d6;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .hero-carousel img {
@@ -78,166 +71,214 @@ body {
   object-fit: cover;
 }
 
-/* ================================
+/* =========================
    HERO TEXTO
-================================ */
+========================= */
 .hero-texto {
-  padding: 96px 24px;
-  text-align: center;
+  padding: 120px 24px 140px;
 }
 
-.hero-texto h1 {
-  font-size: 24px;
-  font-weight: 500;
+.nomes {
+  font-size: 64px;
+  font-weight: 300;
   margin-bottom: 24px;
 }
 
-.hero-texto p {
+.data {
   font-size: 12px;
-  line-height: 2;
-  margin-bottom: 16px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #6b5e52;
+  margin-bottom: 24px;
 }
 
-/* ================================
-   SEÇÕES DE TEXTO
-================================ */
+/* =========================
+   SEÇÕES (PADRÃO)
+========================= */
+section {
+  padding: 140px 24px;
+  position: relative;
+}
+
+section::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background-color: rgba(62,53,44,0.15);
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+section:nth-of-type(even) {
+  background-color: #f4efe8;
+}
+
+/* =========================
+   TEXTOS EDITORIAIS
+========================= */
 .texto-boas-vindas,
 .texto-amigos,
 .texto-final {
-  padding: 96px 24px;
-  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .texto-boas-vindas p,
 .texto-amigos p,
 .texto-final p {
-  font-size: 12px;
-  line-height: 2.2;
+  font-size: 13px;
+  color: #6b5e52;
 }
 
-/* ================================
+/* =========================
    COLEÇÃO
-================================ */
-.sessao-como-chegar {
-  padding: 120px 24px;
-  text-align: center;
-  background-color: var(--marrom-claro);
-}
-
+========================= */
 .titulo-sessao {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 16px;
+  text-transform: lowercase;
 }
 
 .data-sessao {
   font-size: 11px;
-  margin-bottom: 32px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: #6b5e52;
 }
 
 .local-sessao {
   font-size: 12px;
+  color: #6b5e52;
+  margin-bottom: 48px;
   line-height: 2;
-  margin-bottom: 40px;
 }
 
+/* =========================
+   BOTÕES
+========================= */
 .botao-como-chegar {
-  text-decoration: none;
-  padding: 12px 36px;
-  border: 1px solid var(--marrom-escuro);
-  color: var(--marrom-escuro);
+  display: inline-block;
   font-size: 11px;
-  text-transform: lowercase;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #6b5e52;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(107,94,82,0.6);
+  transition: opacity 0.3s ease;
 }
 
 .botao-como-chegar:hover {
-  background-color: var(--marrom-escuro);
-  color: var(--bege);
+  opacity: 0.6;
 }
 
-/* ================================
+/* =========================
    SLIDER
-================================ */
+========================= */
 .slider {
   overflow: hidden;
-  padding: 64px 0;
+  padding: 120px 0;
+}
+
+.slider::before {
+  display: none;
 }
 
 .slider-track {
   display: flex;
   gap: 24px;
-  animation: scroll 25s linear infinite;
 }
 
 .slide img {
-  width: 320px;
-  height: 420px;
+  height: 320px;
+  width: auto;
   object-fit: cover;
 }
 
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* ================================
+/* =========================
    CONTATO
-================================ */
+========================= */
 .contato-section {
-  padding: 120px 24px;
-  text-align: center;
+  background-color: #f4efe8;
 }
 
 .titulo-contato {
-  font-size: 18px;
-  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 24px;
 }
 
 .texto-contato {
   font-size: 12px;
   margin-bottom: 32px;
+  color: #6b5e52;
 }
 
 .whatsapp-contato a {
-  text-decoration: none;
-  color: var(--marrom-escuro);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
+  text-decoration: none;
+  color: #6b5e52;
 }
 
-/* ================================
+.icone-whatsapp {
+  width: 16px;
+}
+
+/* =========================
    FOOTER
-================================ */
+========================= */
 .rodape-site {
-  padding: 48px 24px;
-  text-align: center;
-  font-size: 11px;
-  background-color: var(--marrom-claro);
+  padding: 80px 24px;
+  background-color: #3e352c;
+  color: #fdfaf5;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 
-/* ================================
-   RESPONSIVO (MENU + GERAL)
-================================ */
+.rodape-site a {
+  display: block;
+  margin-top: 16px;
+  text-decoration: none;
+  color: #fdfaf5;
+  opacity: 0.8;
+}
+
+/* =========================
+   AJUSTES ESPECIAIS
+========================= */
+.hero-carousel::before,
+.hero-texto::before {
+  display: none;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
 @media (max-width: 768px) {
 
-  .menu {
-    padding: 24px;
-  }
-
   .menu-list {
-    gap: 16px;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
-  .hero-carousel {
-    height: 50vh;
+  .nomes {
+    font-size: 42px;
+  }
+
+  section {
+    padding: 100px 20px;
   }
 
   .slide img {
-    width: 240px;
-    height: 320px;
+    height: 260px;
   }
 
 }
