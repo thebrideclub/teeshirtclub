@@ -9,18 +9,18 @@ html {
 /* Fontes personalizadas */
 @font-face {
   font-family: 'Chopard';
-  src: url('Chopard.woff2') format('woff2'),
-       url('Chopard.woff') format('woff'),
-       url('Chopard.ttf') format('truetype');
+  src: url('Montserrat.woff2') format('woff2'),
+       url('Montserrat.woff') format('woff'),
+       url('Montserrat.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Girly Moods DEMO";
-  src: url('girlydemo.woff2') format('woff2'),
-       url('girlydemo.woff') format('woff'),
-       url('girlydemo.ttf') format('truetype');
+  src: url('Montserrat.woff2') format('woff2'),
+       url('Montserrat.woff') format('woff'),
+       url('Montserrat.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
