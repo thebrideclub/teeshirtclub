@@ -1,305 +1,246 @@
-/* =========================
-   RESET + BASE
-========================= */
+/* ================================
+   CONFIGURAÇÕES GERAIS
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --marrom-escuro: #3b2f2f;
+  --marrom-medio: #6f4e37;
+  --marrom-claro: #e9e1d6;
+  --bege: #f6f1eb;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.08em;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #fdfaf5;
-  color: #4a3b2f;
-  text-align: center;
-  line-height: 1.8;
+  background-color: var(--bege);
+  color: var(--marrom-escuro);
 }
 
-/* =========================
-   PALETA BASE (MARROM)
-========================= */
-/*
-areia:    #fdfaf5
-bege:     #f3ede4
-caramelo: #c2a77a
-marrom:   #6b4f3a
-escuro:   #4a3b2f
-*/
-
-/* =========================
-   HEADER / MENU
-========================= */
+/* ================================
+   MENU
+================================ */
 .menu {
-  padding: 28px 0 24px;
-  background-color: #fdfaf5;
-  border-bottom: 1px solid rgba(107,79,58,0.08);
+  width: 100%;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bege);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
-  height: 46px;
-  margin-bottom: 14px;
+  height: 42px;
 }
 
 .menu-list {
   list-style: none;
   display: flex;
-  justify-content: center;
   gap: 36px;
 }
 
 .menu-list a {
   text-decoration: none;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #6b4f3a;
-  transition: opacity 0.3s ease;
+  color: var(--marrom-escuro);
+  font-size: 12px;
+  text-transform: lowercase;
 }
 
 .menu-list a:hover {
   opacity: 0.6;
 }
 
-/* =========================
-/* =========================
+/* ================================
    HERO / CAROUSEL
-========================= */
+================================ */
 .hero-carousel {
   width: 100%;
   height: 70vh;
-  background-color: #e9e1d6;
+  background-color: var(--marrom-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
 .hero-carousel img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* preenche o hero */
-  object-position: center; /* mantém foco central */
+  object-fit: cover;
 }
 
-/* =========================
+/* ================================
    HERO TEXTO
-========================= */
+================================ */
 .hero-texto {
-  padding: 100px 20px 120px;
-  background-color: #fdfaf5;
+  padding: 96px 24px;
+  text-align: center;
 }
 
-.nomes {
-  font-size: 72px;
-  font-weight: 300;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: #6b4f3a;
-  margin-bottom: 32px;
+.hero-texto h1 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 24px;
 }
 
-.data {
+.hero-texto p {
   font-size: 12px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #4a3b2f;
-  max-width: 520px;
-  margin: 0 auto 16px;
+  line-height: 2;
+  margin-bottom: 16px;
 }
 
-/* =========================
-   DIVISOR DE SEÇÃO
-========================= */
-section::before {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 1px;
-  background-color: #c2a77a;
-  margin: 0 auto 60px;
+/* ================================
+   SEÇÕES DE TEXTO
+================================ */
+.texto-boas-vindas,
+.texto-amigos,
+.texto-final {
+  padding: 96px 24px;
+  text-align: center;
 }
 
-/* =========================
-   SEÇÕES GERAIS
-========================= */
-section {
-  padding: 120px 20px;
-}
-
-section:nth-of-type(even) {
-  background-color: #f3ede4;
-}
-
-/* =========================
-   SOBRE / MANIFESTO
-========================= */
-.texto-boas-vindas-conteudo p {
-  max-width: 620px;
-  margin: 0 auto;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #4a3b2f;
-}
-
-/* =========================
-   TEXTO FRIENDS
-========================= */
+.texto-boas-vindas p,
 .texto-amigos p,
 .texto-final p {
-  max-width: 520px;
-  margin: 0 auto;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #6b4f3a;
+  font-size: 12px;
+  line-height: 2.2;
 }
 
-/* =========================
+/* ================================
    COLEÇÃO
-========================= */
+================================ */
+.sessao-como-chegar {
+  padding: 120px 24px;
+  text-align: center;
+  background-color: var(--marrom-claro);
+}
+
 .titulo-sessao {
-  font-size: 28px;
-  font-weight: 300;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #6b4f3a;
-  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .data-sessao {
   font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #4a3b2f;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .local-sessao {
   font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #4a3b2f;
   line-height: 2;
+  margin-bottom: 40px;
 }
 
-/* =========================
-   BOTÕES
-========================= */
 .botao-como-chegar {
-  display: inline-block;
-  margin-top: 60px;
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #6b4f3a;
   text-decoration: none;
-  border-bottom: 1px solid #6b4f3a;
-  padding-bottom: 4px;
-  transition: opacity 0.3s ease;
+  padding: 12px 36px;
+  border: 1px solid var(--marrom-escuro);
+  color: var(--marrom-escuro);
+  font-size: 11px;
+  text-transform: lowercase;
 }
 
 .botao-como-chegar:hover {
-  opacity: 0.6;
+  background-color: var(--marrom-escuro);
+  color: var(--bege);
 }
 
-/* =========================
+/* ================================
    SLIDER
-========================= */
+================================ */
 .slider {
   overflow: hidden;
+  padding: 64px 0;
 }
 
 .slider-track {
   display: flex;
-  gap: 28px;
+  gap: 24px;
+  animation: scroll 25s linear infinite;
 }
 
 .slide img {
-  width: 300px;
-  height: 400px;
+  width: 320px;
+  height: 420px;
   object-fit: cover;
-  border-radius: 18px;
 }
 
-/* =========================
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================================
    CONTATO
-========================= */
+================================ */
 .contato-section {
-  padding: 140px 20px;
-  background-color: #fdfaf5;
+  padding: 120px 24px;
+  text-align: center;
 }
 
 .titulo-contato {
-  font-size: 22px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #6b4f3a;
-  margin-bottom: 28px;
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 .texto-contato {
   font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #4a3b2f;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .whatsapp-contato a {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
   text-decoration: none;
+  color: var(--marrom-escuro);
   font-size: 12px;
-  letter-spacing: 3px;
-  color: #6b4f3a;
 }
 
-.icone-whatsapp {
-  width: 18px;
-  height: 18px;
-}
-
-/* =========================
+/* ================================
    FOOTER
-========================= */
+================================ */
 .rodape-site {
-  padding: 60px 20px;
-  background-color: #f3ede4;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #6b4f3a;
+  padding: 48px 24px;
+  text-align: center;
+  font-size: 11px;
+  background-color: var(--marrom-claro);
 }
 
-.rodape-site a {
-  display: block;
-  margin-top: 14px;
-  text-decoration: none;
-  color: #6b4f3a;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
+/* ================================
+   RESPONSIVO (MENU + GERAL)
+================================ */
 @media (max-width: 768px) {
-  .nomes {
-    font-size: 44px;
-    letter-spacing: 4px;
+
+  .menu {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
   }
 
-  section {
-    padding: 90px 20px;
+  .menu-list {
+    flex-direction: column;
+    gap: 16px;
   }
 
   .hero-carousel {
-    height: 45vh;
+    height: 50vh;
   }
 
   .slide img {
-    width: 220px;
-    height: 300px;
+    width: 240px;
+    height: 320px;
   }
+
 }
