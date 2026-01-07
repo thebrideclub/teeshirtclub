@@ -1,31 +1,229 @@
+/* ================================
+   COMPORTAMENTO E FONTES
+==================================*/
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fontes personalizadas */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat.woff2') format('woff2'),
+       url('Montserrat.woff') format('woff'),
+       url('Montserrat.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Montserrat', serif;
   text-align: center;
   background-color: #fffcf6;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
-/* HEADER */
-header.menu {
+/* ================================
+   MENU E CABEÇALHO
+==================================*/
+.menu {
+  background-image: url('fundo.png');
+  padding: 10px 0px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #5f7157;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  font-family: 'Montserrat', serif;
+}
+
+.menu-list li a:hover {
+  color: #a55b4a;
+}
+
+.menu::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
 }
 
-/* MAIN */
-main {
+/* ================================
+   FOTO PRINCIPAL
+==================================*/
+.convite {
+  text-align: center;
+  padding: 0 10px;
+  margin-top: 0;
+}
+
+.foto-principal {
   width: 100%;
-  overflow-x: hidden;
-}
-
-/* SECTIONS */
-section {
-  width: 100%;
-}
-
-/* IMAGENS RESPONSIVAS */
-img {
-  max-width: 100%;
   height: auto;
   display: block;
+  margin: 0;
+}
+
+/* ================================
+   TEXTOS PRINCIPAIS
+==================================*/
+.nomes {
+  font-family: "Montserrat", cursive;
+  font-size: 70px;
+  color: #5f7157;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  font-weight: 50;
+}
+
+.data {
+  font-family: "Montserrat", serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #5f7157;
+  margin-bottom: 10px;
+}
+
+.local {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #5f7157;
+  margin-bottom: 60px;
+}
+
+.icon-embauba {
+  margin-top: 10px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+/* ================================
+   TEXTO DE BOAS-VINDAS
+==================================*/
+.texto-boas-vindas {
+  width: 100%;
+  background-image: url('fundo.png');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+}
+
+.texto-boas-vindas-conteudo {
+  font-family: 'Montserrat', serif;
+  text-transform: uppercase;
+  color: #5f7157;
+  font-size: 14px;
+  line-height: 1.8;
+  letter-spacing: 1.5px;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  padding: 20px 40px;
+}
+
+/* ================================
+   CARD VANS (BUG FIX)
+==================================*/
+.card-vans {
+  width: 100%;
+  max-width: 180px;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   HOTEL INFO (BUG FIX)
+==================================*/
+.hotel .info {
+  font-family: 'Montserrat', serif;
+  text-transform: uppercase;
+  font-size: 9px;
+  color: #5f7157;
+}
+
+/* ================================
+   RESPONSIVO
+==================================*/
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .menu {
+    align-items: flex-start;
+  }
+
+  .logo {
+    width: 70px;
+    margin-top: 20px;
+  }
+
+  .menu-list {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .menu-list li a {
+    font-size: 9px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  .nomes {
+    font-size: 60px;
+  }
+
+  .data,
+  .local {
+    font-size: 11px;
+  }
 }
