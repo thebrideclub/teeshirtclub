@@ -1,5 +1,5 @@
 /* =========================
-   RESET + BASE
+   RESET + FONTE GLOBAL
 ========================= */
 * {
   margin: 0;
@@ -21,24 +21,23 @@ body {
 }
 
 /* =========================
-   MENU
+   MENU (SIMPLES)
 ========================= */
 .menu {
-  padding: 28px 16px 36px;
+  padding: 24px 16px 32px;
   border-bottom: 1px solid rgba(62,53,44,0.08);
 }
 
 .logo {
   height: 48px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .menu-list {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 36px;
-  flex-wrap: wrap;
+  gap: 32px;
 }
 
 .menu-list a {
@@ -54,6 +53,375 @@ body {
   opacity: 0.6;
 }
 
+/* =========================
+   HERO / CAROUSEL
+========================= */
+.hero-carousel {
+  width: 100%;
+  height: 70vh;
+  background-color: #e9e1d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   HERO TEXTO
+========================= */
+.hero-texto {
+  padding: 120px 24px 140px;
+}
+
+.nomes {
+  font-size: 64px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  text-transform: lowercase;
+}
+
+.data {
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  color: #6b5e52;
+  margin-bottom: 24px;
+  text-transform: lowercase;
+}
+
+/* =========================
+   SEÇÕES (PADRÃO)
+========================= */
+section {
+  padding: 140px 24px;
+  position: relative;
+}
+
+section::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background-color: rgba(62,53,44,0.15);
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+section:nth-of-type(even) {
+  background-color: #f4efe8;
+}
+
+/* não mostrar divisor no hero */
+.hero-carousel::before,
+.hero-texto::before {
+  display: none;
+}
+
+/* =========================
+   TEXTOS EDITORIAIS
+========================= */
+.texto-boas-vindas,
+.texto-amigos,
+.texto-final {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.texto-boas-vindas p,
+.texto-amigos p,
+.texto-final p {
+  font-size: 13px;
+  color: #6b5e52;
+  text-transform: lowercase;
+}
+
+/* =========================
+   COLEÇÃO
+========================= */
+.titulo-sessao {
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 16px;
+  text-transform: lowercase;
+}
+
+.data-sessao {
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  margin-bottom: 40px;
+  color: #6b5e52;
+  text-transform: lowercase;
+}
+
+.local-sessao {
+  font-size: 12px;
+  color: #6b5e52;
+  margin-bottom: 48px;
+  line-height: 2;
+  text-transform: lowercase;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.botao-como-chegar {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #6b5e52;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(107,94,82,0.6);
+  transition: opacity 0.3s ease;
+}
+
+.botao-como-chegar:hover {
+  opacity: 0.6;
+}
+
+/* =========================
+   SLIDER
+========================= */
+.slider {
+  overflow: hidden;
+  padding: 120px 0;
+}
+
+.slider::before {
+  display: none;
+}
+
+.slider-track {
+  display: flex;
+  gap: 24px;
+}
+
+.slide img {
+  height: 320px;
+  width: auto;
+  object-fit: cover;
+}
+
+/* =========================
+   CONTATO
+========================= */
+.contato-section {
+  background-color: #f4efe8;
+}
+
+.titulo-contato {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  text-transform: lowercase;
+}
+
+.texto-contato {
+  font-size: 12px;
+  margin-bottom: 32px;
+  color: #6b5e52;
+  text-transform: lowercase;
+}
+
+.whatsapp-contato a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  text-decoration: none;
+  color: #6b5e52;
+  text-transform: lowercase;
+}
+
+.icone-whatsapp {
+  width: 16px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.rodape-site {
+  padding: 80px 24px;
+  background-color: #3e352c;
+  color: #fdfaf5;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: lowercase;
+}
+
+.rodape-site a {
+  display: block;
+  margin-top: 16px;
+  text-decoration: none;
+  color: #fdfaf5;
+  opacity: 0.8;
+}
+/* ===============================
+   SHOP – CONTAINER
+================================ */
+.shop-container {
+  padding: 120px 6vw 100px;
+}
+
+.shop-titulo {
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 80px;
+  text-transform: lowercase;
+}
+
+/* ===============================
+   GRID DE PRODUTOS
+================================ */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   CARD
+================================ */
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   CARROSSEL
+================================ */
+.carrossel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: #eee;
+}
+
+.carrossel-track {
+  display: flex;
+  transition: transform 0.45s ease;
+}
+
+.carrossel img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+/* BOTÕES DO CARROSSEL */
+.carrossel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(62,53,44,0.35);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.carrossel .prev { left: 8px; }
+.carrossel .next { right: 8px; }
+
+/* ===============================
+   TEXTO DO PRODUTO
+================================ */
+.produto-card h2 {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.preco {
+  font-size: 11px;
+  color: #3e352c;
+}
+
+.descricao {
+  font-size: 10px;
+  color: #6b5e52;
+  line-height: 1.6;
+}
+
+/* ===============================
+   BOTÃO
+================================ */
+.botao-ver {
+  margin-top: 12px;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #6b5e52;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(107,94,82,0.6);
+  transition: opacity 0.3s ease;
+}
+
+.botao-ver:hover {
+  opacity: 0.6;
+}
+
+/* ===============================
+   RESPONSIVO — NOTEBOOK
+================================ */
+@media (max-width: 1200px) {
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 56px;
+  }
+}
+
+/* ===============================
+   RESPONSIVO — TABLET
+================================ */
+@media (max-width: 900px) {
+  .shop-container {
+    padding: 100px 40px;
+  }
+
+  .produtos-grid {
+    gap: 48px;
+  }
+}
+
+/* ===============================
+   RESPONSIVO — MOBILE
+================================ */
+@media (max-width: 600px) {
+  .shop-container {
+    padding: 80px 24px;
+  }
+
+  .produtos-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .produto-card {
+    max-width: 100%;
+  }
+
+  .carrossel {
+    aspect-ratio: 1 / 1;
+  }
+}
 /* =========================
    SHOP – CONTAINER
 ========================= */
