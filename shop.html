@@ -1,83 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>camiseta oversized | tee shirt club</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>shop | tee shirt club</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="menu">
-    <div class="logo-container">
-      <img src="logo.png" alt="tee shirt club" class="logo">
-    </div>
+<header class="menu">
+  <div class="logo-container">
+    <img src="logo.png" alt="tee shirt club" class="logo" />
+  </div>
+  <nav class="nav-container">
+    <ul class="menu-list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="shop.html" class="ativo">shop</a></li>
+      <li><a href="index.html#sobre">sobre</a></li>
+      <li><a href="index.html#contato">contato</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <nav class="nav-container">
-      <ul class="menu-list">
-        <li><a href="index.html">home</a></li>
-        <li><a href="shop.html">shop</a></li>
-        <li><a href="index.html#sobre">sobre</a></li>
-        <li><a href="index.html#contato">contato</a></li>
-      </ul>
-    </nav>
-  </header>
+<main class="shop-container">
+  <h1 class="shop-titulo">coleção oversized</h1>
 
-  <!-- HERO PRODUTO -->
-  <section class="produto-hero">
-    <img src="camiseta1.jpg" alt="camiseta oversized tee shirt club">
+  <section class="produtos-grid">
+
+    <!-- PRODUTO 01 -->
+    <article class="produto-card">
+      <img src="camiseta1/capa.jpg" alt="camiseta oversized 01" class="produto-capa" />
+      <h2>camiseta oversized 01</h2>
+      <p class="preco">r$ 199,00</p>
+      <p class="descricao">malha premium • modelagem ampla • unissex</p>
+      <div class="mini-galeria">
+        <img src="camiseta1/frente.jpg" />
+        <img src="camiseta1/costas.jpg" />
+        <img src="camiseta1/detalhe.jpg" />
+        <img src="camiseta1/tecido.jpg" />
+      </div>
+      <a href="produto1.html" class="botao-ver">ver produto</a>
+    </article>
+
+    <!-- PRODUTO 02 -->
+    <article class="produto-card">
+      <img src="camiseta2/capa.jpg" alt="camiseta oversized 02" class="produto-capa" />
+      <h2>camiseta oversized 02</h2>
+      <p class="preco">r$ 199,00</p>
+      <p class="descricao">algodão 100% • estampa silk • conforto diário</p>
+      <div class="mini-galeria">
+        <img src="camiseta2/frente.jpg" />
+        <img src="camiseta2/costas.jpg" />
+        <img src="camiseta2/detalhe.jpg" />
+        <img src="camiseta2/tecido.jpg" />
+      </div>
+      <a href="produto2.html" class="botao-ver">ver produto</a>
+    </article>
+
+    <!-- PRODUTO 03 -->
+    <article class="produto-card">
+      <img src="camiseta3/capa.jpg" alt="camiseta oversized 03" class="produto-capa" />
+      <h2>camiseta oversized 03</h2>
+      <p class="preco">r$ 199,00</p>
+      <p class="descricao">fio penteado • caimento pesado • minimal</p>
+      <div class="mini-galeria">
+        <img src="camiseta3/frente.jpg" />
+        <img src="camiseta3/costas.jpg" />
+        <img src="camiseta3/detalhe.jpg" />
+        <img src="camiseta3/tecido.jpg" />
+      </div>
+      <a href="produto3.html" class="botao-ver">ver produto</a>
+    </article>
+
+    <!-- PRODUTOS 04 a 10 -->
+    <!-- Duplique o bloco acima alterando apenas o número e as imagens -->
+
   </section>
+</main>
 
-  <!-- BLOCO DE COMPRA -->
-  <section class="produto-info">
-    <h1>camiseta oversized</h1>
-
-    <p class="produto-preco">r$ 199,00</p>
-
-    <p class="produto-descricao">
-      criada no tempo certo.<br>
-      feita pra acompanhar quem está em construção.
-    </p>
-
-    <a
-      href="https://wa.me/5511999999999"
-      target="_blank"
-      class="botao-comprar-grande"
-    >
-      comprar pelo whatsapp
-    </a>
-  </section>
-
-  <!-- GALERIA -->
-  <section class="produto-galeria">
-    <img src="camiseta1.jpg" alt="">
-    <img src="camiseta1-costas.jpg" alt="">
-    <img src="camiseta1-detalhe.jpg" alt="">
-    <img src="camiseta1-tecido.jpg" alt="">
-  </section>
-
-  <!-- MANIFESTO -->
-  <section class="produto-manifesto">
-    <p>
-      vestir também é uma escolha.<br>
-      a nossa é caminhar com intenção.
-    </p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="rodape-site">
-    <p>
-      tee shirt club<br>
-      feito com intenção
-    </p>
-
-    <a href="https://instagram.com/teeshirtclub" target="_blank">
-      @teeshirtclub
-    </a>
-  </footer>
+<footer class="rodape-site">
+  <p>tee shirt club<br>feito com intenção</p>
+  <a href="https://instagram.com/teeshirtclub" target="_blank">@teeshirtclub</a>
+</footer>
 
 </body>
 </html>
