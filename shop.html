@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="menu">
   <div class="logo-container">
     <img src="logo.png" alt="tee shirt club" class="logo" />
@@ -22,60 +23,121 @@
   </nav>
 </header>
 
+<!-- SHOP -->
 <main class="shop-container">
-  <h1 class="shop-titulo">coleção oversized</h1>
 
+  <!-- TÍTULO + COLEÇÕES -->
+  <div class="shop-header">
+    <h1 class="shop-titulo">shop</h1>
+
+    <div class="filtro-colecoes">
+      <button class="colecao-btn ativo" data-colecao="all">todas</button>
+      <button class="colecao-btn" data-colecao="sardines">sardines</button>
+      <button class="colecao-btn" data-colecao="loved">loved</button>
+      <button class="colecao-btn" data-colecao="rio">rio</button>
+    </div>
+  </div>
+
+  <!-- GRID DE PRODUTOS -->
   <section class="produtos-grid">
 
-    <!-- PRODUTO 01 -->
-    <article class="produto-card">
+    <!-- SARDINES -->
+    <article class="produto-card" data-colecao="sardines">
       <div class="carrossel" data-carrossel>
         <div class="carrossel-track">
-          <img src="sardines_tshirt.png" />
-          <img src="sardines_tshirt.png" />
-          <img src="sardines_tshirt.png" />
-          <img src="sardines_tshirt.png" />
+          <img src="camiseta1/frente.jpg" />
+          <img src="camiseta1/costas.jpg" />
+          <img src="camiseta1/detalhe.jpg" />
         </div>
         <button class="prev">‹</button>
         <button class="next">›</button>
       </div>
-
-      <h2>camiseta oversized 01</h2>
+      <h2>camiseta sardines 01</h2>
       <p class="preco">r$ 199,00</p>
-      <p class="descricao">malha premium • modelagem ampla • unissex</p>
-      <a href="produto1.html" class="botao-ver">ver produto</a>
+      <p class="descricao">malha premium • oversized</p>
+      <a href="#" class="botao-ver">ver produto</a>
     </article>
 
-    <!-- PRODUTO 02 -->
-    <article class="produto-card">
+    <article class="produto-card" data-colecao="sardines">
       <div class="carrossel" data-carrossel>
         <div class="carrossel-track">
           <img src="camiseta2/frente.jpg" />
           <img src="camiseta2/costas.jpg" />
-          <img src="camiseta2/detalhe.jpg" />
-          <img src="camiseta2/tecido.jpg" />
         </div>
         <button class="prev">‹</button>
         <button class="next">›</button>
       </div>
-
-      <h2>camiseta oversized 02</h2>
+      <h2>camiseta sardines 02</h2>
       <p class="preco">r$ 199,00</p>
-      <p class="descricao">algodão 100% • estampa silk • conforto diário</p>
-      <a href="produto2.html" class="botao-ver">ver produto</a>
+      <p class="descricao">algodão 100% • conforto diário</p>
+      <a href="#" class="botao-ver">ver produto</a>
     </article>
 
-    <!-- Repita até camiseta 10 -->
+    <!-- LOVED -->
+    <article class="produto-card" data-colecao="loved">
+      <div class="carrossel" data-carrossel>
+        <div class="carrossel-track">
+          <img src="camiseta3/frente.jpg" />
+          <img src="camiseta3/costas.jpg" />
+        </div>
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+      </div>
+      <h2>camiseta loved 01</h2>
+      <p class="preco">r$ 199,00</p>
+      <p class="descricao">estampa minimal • unissex</p>
+      <a href="#" class="botao-ver">ver produto</a>
+    </article>
+
+    <!-- RIO -->
+    <article class="produto-card" data-colecao="rio">
+      <div class="carrossel" data-carrossel>
+        <div class="carrossel-track">
+          <img src="camiseta4/frente.jpg" />
+          <img src="camiseta4/costas.jpg" />
+        </div>
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+      </div>
+      <h2>camiseta rio 01</h2>
+      <p class="preco">r$ 199,00</p>
+      <p class="descricao">caimento pesado • urbano</p>
+      <a href="#" class="botao-ver">ver produto</a>
+    </article>
 
   </section>
 </main>
 
+<!-- FOOTER -->
 <footer class="rodape-site">
   <p>tee shirt club<br>feito com intenção</p>
   <a href="https://instagram.com/teeshirtclub" target="_blank">@teeshirtclub</a>
 </footer>
 
+<!-- SCRIPT (pode ficar aqui ou em arquivo separado) -->
 <script>
+  /* FILTRO DE COLEÇÕES */
+  const botoes = document.querySelectorAll('.colecao-btn');
+  const produtos = document.querySelectorAll('.produto-card');
+
+  botoes.forEach(botao => {
+    botao.addEventListener('click', () => {
+      botoes.forEach(b => b.classList.remove('ativo'));
+      botao.classList.add('ativo');
+
+      const colecao = botao.dataset.colecao;
+
+      produtos.forEach(produto => {
+        if (colecao === 'all' || produto.dataset.colecao === colecao) {
+          produto.style.display = 'flex';
+        } else {
+          produto.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* CARROSSEL */
   document.querySelectorAll('[data-carrossel]').forEach(carrossel => {
     const track = carrossel.querySelector('.carrossel-track');
     const slides = track.children;
