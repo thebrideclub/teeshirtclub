@@ -29,51 +29,43 @@
 
     <!-- PRODUTO 01 -->
     <article class="produto-card">
-      <img src="camiseta1/capa.jpg" alt="camiseta oversized 01" class="produto-capa" />
+      <div class="carrossel" data-carrossel>
+        <div class="carrossel-track">
+          <img src="camiseta1/frente.jpg" />
+          <img src="camiseta1/costas.jpg" />
+          <img src="camiseta1/detalhe.jpg" />
+          <img src="camiseta1/tecido.jpg" />
+        </div>
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+      </div>
+
       <h2>camiseta oversized 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">malha premium • modelagem ampla • unissex</p>
-      <div class="mini-galeria">
-        <img src="sardines_tshirt.png" />
-        <img src="camiseta1.jpg" />
-        <img src="camiseta1/detalhe.jpg" />
-        <img src="camiseta1/tecido.jpg" />
-      </div>
       <a href="produto1.html" class="botao-ver">ver produto</a>
     </article>
 
     <!-- PRODUTO 02 -->
     <article class="produto-card">
-      <img src="camiseta2/capa.jpg" alt="camiseta oversized 02" class="produto-capa" />
+      <div class="carrossel" data-carrossel>
+        <div class="carrossel-track">
+          <img src="camiseta2/frente.jpg" />
+          <img src="camiseta2/costas.jpg" />
+          <img src="camiseta2/detalhe.jpg" />
+          <img src="camiseta2/tecido.jpg" />
+        </div>
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+      </div>
+
       <h2>camiseta oversized 02</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">algodão 100% • estampa silk • conforto diário</p>
-      <div class="mini-galeria">
-        <img src="camiseta2/frente.jpg" />
-        <img src="camiseta2/costas.jpg" />
-        <img src="camiseta2/detalhe.jpg" />
-        <img src="camiseta2/tecido.jpg" />
-      </div>
       <a href="produto2.html" class="botao-ver">ver produto</a>
     </article>
 
-    <!-- PRODUTO 03 -->
-    <article class="produto-card">
-      <img src="camiseta3/capa.jpg" alt="camiseta oversized 03" class="produto-capa" />
-      <h2>camiseta oversized 03</h2>
-      <p class="preco">r$ 199,00</p>
-      <p class="descricao">fio penteado • caimento pesado • minimal</p>
-      <div class="mini-galeria">
-        <img src="camiseta3/frente.jpg" />
-        <img src="camiseta3/costas.jpg" />
-        <img src="camiseta3/detalhe.jpg" />
-        <img src="camiseta3/tecido.jpg" />
-      </div>
-      <a href="produto3.html" class="botao-ver">ver produto</a>
-    </article>
-
-    <!-- PRODUTOS 04 a 10 -->
-    <!-- Duplique o bloco acima alterando apenas o número e as imagens -->
+    <!-- Repita até camiseta 10 -->
 
   </section>
 </main>
@@ -82,6 +74,24 @@
   <p>tee shirt club<br>feito com intenção</p>
   <a href="https://instagram.com/teeshirtclub" target="_blank">@teeshirtclub</a>
 </footer>
+
+<script>
+  document.querySelectorAll('[data-carrossel]').forEach(carrossel => {
+    const track = carrossel.querySelector('.carrossel-track');
+    const slides = track.children;
+    let index = 0;
+
+    carrossel.querySelector('.next').onclick = () => {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+
+    carrossel.querySelector('.prev').onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+  });
+</script>
 
 </body>
 </html>
