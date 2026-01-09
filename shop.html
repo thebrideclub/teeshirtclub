@@ -36,56 +36,48 @@
 
   <section class="produtos-grid">
 
-    <article class="produto-card"
-      data-colecao="sardines"
-      data-nome="camiseta sardines 01"
-      data-preco="199.00"
-      data-imagem="sardines_tshirt.png">
-
+    <!-- SARDINES 01 -->
+    <article class="produto-card" data-colecao="sardines">
       <img src="sardines_tshirt.png" />
       <h2>camiseta sardines 01</h2>
       <p class="preco">r$ 199,00</p>
-      <p class="descricao">malha premium • oversized</p>
-      <button class="add-cart-btn">adicionar ao carrinho</button>
+      <p class="descricao">malha 30.1 • oversized</p>
+      <a href="product.html?produto=sardines01" class="ver-produto-btn">
+        ver produto
+      </a>
     </article>
 
-    <article class="produto-card"
-      data-colecao="sardines"
-      data-nome="camiseta sardines 02"
-      data-preco="199.00"
-      data-imagem="sardine2.png">
-
+    <!-- SARDINES 02 -->
+    <article class="produto-card" data-colecao="sardines">
       <img src="sardine2.png" />
       <h2>camiseta sardines 02</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">algodão 100% • conforto diário</p>
-      <button class="add-cart-btn">adicionar ao carrinho</button>
+      <a href="product.html?produto=sardines02" class="ver-produto-btn">
+        ver produto
+      </a>
     </article>
 
-    <article class="produto-card"
-      data-colecao="loved"
-      data-nome="camiseta loved 01"
-      data-preco="199.00"
-      data-imagem="camiseta3/frente.jpg">
-
+    <!-- LOVED -->
+    <article class="produto-card" data-colecao="loved">
       <img src="camiseta3/frente.jpg" />
       <h2>camiseta loved 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">estampa minimal • unissex</p>
-      <button class="add-cart-btn">adicionar ao carrinho</button>
+      <a href="product.html?produto=loved01" class="ver-produto-btn">
+        ver produto
+      </a>
     </article>
 
-    <article class="produto-card"
-      data-colecao="rio"
-      data-nome="camiseta rio 01"
-      data-preco="199.00"
-      data-imagem="camiseta4/frente.jpg">
-
+    <!-- RIO -->
+    <article class="produto-card" data-colecao="rio">
       <img src="camiseta4/frente.jpg" />
       <h2>camiseta rio 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">caimento pesado • urbano</p>
-      <button class="add-cart-btn">adicionar ao carrinho</button>
+      <a href="product.html?produto=rio01" class="ver-produto-btn">
+        ver produto
+      </a>
     </article>
 
   </section>
@@ -95,74 +87,25 @@
   <p>tee shirt club<br>feito com intenção</p>
 </footer>
 
-<!-- MODAL DO CARRINHO -->
-<div class="cart-modal" id="cartModal">
-  <div class="cart-modal-content">
-    <p>produto adicionado ao carrinho 🛒</p>
-
-    <div class="cart-modal-actions">
-      <button onclick="closeCartModal()">continuar comprando</button>
-      <a href="cart.html" class="go-cart">ir para o carrinho</a>
-    </div>
-  </div>
-</div>
-
 <script>
-  /* filtro coleções */
-  const botoes = document.querySelectorAll('.colecao-btn');
-  const produtos = document.querySelectorAll('.produto-card');
+/* filtro coleções */
+const botoes = document.querySelectorAll('.colecao-btn');
+const produtos = document.querySelectorAll('.produto-card');
 
-  botoes.forEach(botao => {
-    botao.onclick = () => {
-      botoes.forEach(b => b.classList.remove('ativo'));
-      botao.classList.add('ativo');
+botoes.forEach(botao => {
+  botao.onclick = () => {
+    botoes.forEach(b => b.classList.remove('ativo'));
+    botao.classList.add('ativo');
 
-      const colecao = botao.dataset.colecao;
-      produtos.forEach(p => {
-        p.style.display =
-          colecao === 'all' || p.dataset.colecao === colecao
-            ? 'flex'
-            : 'none';
-      });
-    };
-  });
-
-  /* modal */
-  const modal = document.getElementById('cartModal');
-
-  function openCartModal() {
-    modal.classList.add('show');
-  }
-
-  function closeCartModal() {
-    modal.classList.remove('show');
-  }
-
-  /* adicionar ao carrinho */
-  document.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.onclick = () => {
-      const card = btn.closest('.produto-card');
-
-      const produto = {
-        nome: card.dataset.nome,
-        preco: Number(card.dataset.preco),
-        imagem: card.dataset.imagem,
-        quantidade: 1
-      };
-
-      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-      const existente = carrinho.find(p => p.nome === produto.nome);
-
-      if (existente) {
-        existente.quantidade += 1;
-      } else {
-        carrinho.push(produto);
-      }
-
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      openCartModal();
-    };
-  });
+    const colecao = botao.dataset.colecao;
+    produtos.forEach(p => {
+      p.style.display =
+        colecao === 'all' || p.dataset.colecao === colecao
+          ? 'flex'
+          : 'none';
+    });
+  };
+});
 </script>
 
 </body>
