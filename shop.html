@@ -36,7 +36,6 @@
 
   <section class="produtos-grid">
 
-    <!-- SARDINES 01 -->
     <article class="produto-card"
       data-colecao="sardines"
       data-nome="camiseta sardines 01"
@@ -50,7 +49,6 @@
       <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
-    <!-- SARDINES 02 -->
     <article class="produto-card"
       data-colecao="sardines"
       data-nome="camiseta sardines 02"
@@ -64,7 +62,6 @@
       <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
-    <!-- LOVED -->
     <article class="produto-card"
       data-colecao="loved"
       data-nome="camiseta loved 01"
@@ -78,7 +75,6 @@
       <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
-    <!-- RIO -->
     <article class="produto-card"
       data-colecao="rio"
       data-nome="camiseta rio 01"
@@ -99,6 +95,18 @@
   <p>tee shirt club<br>feito com intenção</p>
 </footer>
 
+<!-- MODAL DO CARRINHO -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-modal-content">
+    <p>produto adicionado ao carrinho 🛒</p>
+
+    <div class="cart-modal-actions">
+      <button onclick="closeCartModal()">continuar comprando</button>
+      <a href="cart.html" class="go-cart">ir para o carrinho</a>
+    </div>
+  </div>
+</div>
+
 <script>
   /* filtro coleções */
   const botoes = document.querySelectorAll('.colecao-btn');
@@ -113,11 +121,22 @@
       produtos.forEach(p => {
         p.style.display =
           colecao === 'all' || p.dataset.colecao === colecao
-          ? 'flex'
-          : 'none';
+            ? 'flex'
+            : 'none';
       });
     };
   });
+
+  /* modal */
+  const modal = document.getElementById('cartModal');
+
+  function openCartModal() {
+    modal.classList.add('show');
+  }
+
+  function closeCartModal() {
+    modal.classList.remove('show');
+  }
 
   /* adicionar ao carrinho */
   document.querySelectorAll('.add-cart-btn').forEach(btn => {
@@ -141,7 +160,7 @@
       }
 
       localStorage.setItem('carrinho', JSON.stringify(carrinho));
-      alert('produto adicionado ao carrinho 🛒');
+      openCartModal();
     };
   });
 </script>
