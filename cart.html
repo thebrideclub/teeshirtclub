@@ -44,13 +44,12 @@
 
 </main>
 
-<!-- FOOTER DO CARRINHO -->
+<!-- FOOTER -->
 <footer class="cart-footer">
   <p id="total">total: r$ 0,00</p>
   <button onclick="checkout()">finalizar compra</button>
 </footer>
 
-<!-- SCRIPT -->
 <script>
   const cartEl = document.getElementById('cart');
   const statusEl = document.getElementById('status');
@@ -73,17 +72,19 @@
   let total = 0;
 
   carrinho.forEach((item, index) => {
-    total += item.preco * item.quantidade;
+    const subtotal = item.preco * item.quantidade;
+    total += subtotal;
 
     const div = document.createElement('div');
     div.className = 'cart-item';
 
     div.innerHTML = `
       <img src="${item.imagem}" alt="${item.nome}">
-      <div>
+      <div class="cart-info">
         <h3>${item.nome}</h3>
+        ${item.tamanho ? `<p>tamanho: ${item.tamanho.toUpperCase()}</p>` : ''}
         <p>quantidade: ${item.quantidade}</p>
-        <p>r$ ${(item.preco * item.quantidade).toFixed(2)}</p>
+        <p>r$ ${subtotal.toFixed(2)}</p>
         <button onclick="removeItem(${index})">remover</button>
       </div>
     `;
@@ -125,6 +126,9 @@
       totalPedido += subtotal;
 
       mensagem += `• ${item.nome}\n`;
+      if (item.tamanho) {
+        mensagem += `  tamanho: ${item.tamanho.toUpperCase()}\n`;
+      }
       mensagem += `  quantidade: ${item.quantidade}\n`;
       mensagem += `  valor: r$ ${subtotal.toFixed(2)}\n\n`;
     });
