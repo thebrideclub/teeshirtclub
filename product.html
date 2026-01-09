@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>produto | tee shirt club</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="menu">
+  <div class="logo-container">
+    <img src="logo.png" alt="tee shirt club" class="logo" />
+  </div>
+  <nav class="nav-container">
+    <ul class="menu-list">
+      <li><a href="shop.html">shop</a></li>
+      <li><a href="cart.html">carrinho</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PRODUTO -->
+<main class="product-page">
+
+  <!-- GALERIA / CARROSSEL -->
+  <div class="product-gallery">
+    <div class="gallery-track" id="galleryTrack"></div>
+    <button class="prev">‹</button>
+    <button class="next">›</button>
+  </div>
+
+  <!-- INFORMAÇÕES -->
+  <div class="product-info">
+    <h1 id="productName"></h1>
+    <p class="price" id="productPrice"></p>
+    <p class="description" id="productDescription"></p>
+
+    <!-- TAMANHOS -->
+    <div class="sizes">
+      <p>tamanho</p>
+      <div class="size-options">
+        <button data-size="pp">pp</button>
+        <button data-size="p">p</button>
+        <button data-size="m">m</button>
+        <button data-size="g">g</button>
+        <button data-size="gg">gg</button>
+        <button data-size="g1">g1</button>
+        <button data-size="g2">g2</button>
+      </div>
+    </div>
+
+    <button class="add-cart-btn">adicionar ao carrinho</button>
+  </div>
+
+</main>
+
+<!-- MODAL -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-modal-content">
+    <p>produto adicionado ao carrinho 🛒</p>
+    <div class="cart-modal-actions">
+      <button onclick="closeCartModal()">continuar comprando</button>
+      <a href="cart.html" class="go-cart">ir para o carrinho</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* BASE DE PRODUTOS */
+const produtos = {
+  sardines01: {
+    nome: "camiseta sardines 01",
+    preco: 199,
+    descricao: `faz parte da coleção fisher club.
+
+essa camiseta foi desenvolvida em malha 30.1, com toque macio, caimento estruturado e alta durabilidade. é aquele tipo de peça que veste bem desde o primeiro uso e continua impecável com o tempo.
+
+a estampa foi desenhada pela madu, que ama camisetas de sardinha e tudo o que carrega essa estética simples, irônica e cheia de personalidade. uma peça pensada pra quem gosta de vestir intenção, memória e identidade.`,
+    imagens: [
+      "sardines_tshirt.png",
+      "sardines_tshirt.png"
+    ]
+  },
+
+  sardines02: {
+    nome: "camiseta sardines 02",
+    preco: 199,
+    descricao: `faz parte da coleção fisher club.
+
+confeccionada em malha 30.1, com conforto, resistência e caimento perfeito. uma peça versátil, feita para acompanhar o dia a dia com leveza e personalidade.`,
+    imagens: [
+      "sardine2.png",
+      "sardine2_foto2.png"
+    ]
+  },
+
+  loved01: {
+    nome: "camiseta loved 01",
+    preco: 199,
+    descricao: `da coleção loved.
+
+camiseta em malha 30.1, com toque suave e caimento confortável. uma peça minimal, pensada para quem acredita que o essencial também comunica.`,
+    imagens: [
+      "camiseta3/frente.jpg",
+      "camiseta3/costas.jpg"
+    ]
+  },
+
+  rio01: {
+    nome: "camiseta rio 01",
+    preco: 199,
+    descricao: `da coleção rio.
+
+malha 30.1 encorpada, caimento urbano e presença forte. inspirada na estética das ruas, no movimento e na liberdade de vestir quem você é.`,
+    imagens: [
+      "camiseta4/frente.jpg",
+      "camiseta4/costas.jpg"
+    ]
+  }
+};
+
+/* PEGA PRODUTO DA URL */
+const params = new URLSearchParams(window.location.search);
+const produtoId = params.get("produto");
+const produto = produtos[produtoId];
+
+/* POPULA CONTEÚDO */
+document.getElementById("productName").innerText = produto.nome;
+document.getElementById("productPrice").innerText = `r$ ${produto.preco},00`;
+document.getElementById("productDescription").innerText = produto.descricao;
+
+/* CARROSSEL */
+const track = document.getElementById("galleryTrack");
+produto.imagens.forEach(img => {
+  const image = document.createElement("img");
+  image.src = img;
+  track.appendChild(image);
+});
+
+let index = 0;
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % produto.imagens.length;
+  track.style.transform = `translateX(-${index * 100}%)`;
+};
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + produto.imagens.length) % produto.imagens.length;
+  track.style.transform = `translateX(-${index * 100}%)`;
+};
+
+/* TAMANHO */
+let tamanhoSelecionado = null;
+document.querySelectorAll(".size-options button").forEach(btn => {
+  btn.onclick = () => {
+    document
+      .querySelectorAll(".size-options button")
+      .forEach(b => b.classList.remove("ativo"));
+
+    btn.classList.add("ativo");
+    tamanhoSelecionado = btn.dataset.size;
+  };
+});
+
+/* MODAL */
+const modal = document.getElementById("cartModal");
+function closeCartModal() {
+  modal.classList.remove("show");
+}
+
+/* ADICIONAR AO CARRINHO */
+document.querySelector(".add-cart-btn").onclick = () => {
+  if (!tamanhoSelecionado) {
+    alert("selecione um tamanho");
+    return;
+  }
+
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  carrinho.push({
+    nome: produto.nome,
+    preco: produto.preco,
+    tamanho: tamanhoSelecionado,
+    quantidade: 1
+  });
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  modal.classList.add("show");
+};
+</script>
+
+</body>
+</html>
