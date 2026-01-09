@@ -8,9 +8,10 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="menu">
   <div class="logo-container">
-    <img src="logo.png" alt="tee shirt club" class="logo">
+    <img src="logo.png" alt="tee shirt club" class="logo" />
   </div>
 
   <nav class="nav-container">
@@ -22,16 +23,34 @@
   </nav>
 </header>
 
+<!-- CARRINHO -->
 <main class="cart-container">
+
   <p id="status">carregando carrinho...</p>
   <div id="cart"></div>
+
+  <!-- DADOS DO CLIENTE -->
+  <div class="checkout-form">
+    <label>
+      nome
+      <input type="text" id="cliente-nome" placeholder="seu nome completo" />
+    </label>
+
+    <label>
+      telefone / whatsapp
+      <input type="tel" id="cliente-telefone" placeholder="(11) 99999-9999" />
+    </label>
+  </div>
+
 </main>
 
+<!-- FOOTER DO CARRINHO -->
 <footer class="cart-footer">
   <p id="total">total: r$ 0,00</p>
   <button onclick="checkout()">finalizar compra</button>
 </footer>
 
+<!-- SCRIPT -->
 <script>
   const cartEl = document.getElementById('cart');
   const statusEl = document.getElementById('status');
@@ -60,7 +79,7 @@
     div.className = 'cart-item';
 
     div.innerHTML = `
-      <img src="${item.imagem}">
+      <img src="${item.imagem}" alt="${item.nome}">
       <div>
         <h3>${item.nome}</h3>
         <p>quantidade: ${item.quantidade}</p>
@@ -81,7 +100,41 @@
   }
 
   function checkout() {
-    alert('checkout em breve 💳');
+    const nome = document.getElementById('cliente-nome').value.trim();
+    const telefone = document.getElementById('cliente-telefone').value.trim();
+
+    if (!nome || !telefone) {
+      alert('por favor, preencha nome e telefone 😊');
+      return;
+    }
+
+    if (carrinho.length === 0) {
+      alert('seu carrinho está vazio');
+      return;
+    }
+
+    let mensagem = `🛒 *nova compra - tee shirt club*\n\n`;
+    mensagem += `👤 nome: ${nome}\n`;
+    mensagem += `📱 telefone: ${telefone}\n\n`;
+    mensagem += `📦 *itens do pedido:*\n\n`;
+
+    let totalPedido = 0;
+
+    carrinho.forEach(item => {
+      const subtotal = item.preco * item.quantidade;
+      totalPedido += subtotal;
+
+      mensagem += `• ${item.nome}\n`;
+      mensagem += `  quantidade: ${item.quantidade}\n`;
+      mensagem += `  valor: r$ ${subtotal.toFixed(2)}\n\n`;
+    });
+
+    mensagem += `💰 *total: r$ ${totalPedido.toFixed(2)}*`;
+
+    const numeroLoja = '5511945163111';
+    const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, '_blank');
   }
 </script>
 
