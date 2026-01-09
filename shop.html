@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="menu">
   <div class="logo-container">
     <img src="logo.png" alt="tee shirt club" class="logo" />
@@ -17,16 +16,13 @@
     <ul class="menu-list">
       <li><a href="index.html">home</a></li>
       <li><a href="shop.html" class="ativo">shop</a></li>
-      <li><a href="index.html#sobre">sobre</a></li>
-      <li><a href="index.html#contato">contato</a></li>
+      <li><a href="cart.html">carrinho</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- SHOP -->
 <main class="shop-container">
 
-  <!-- TÍTULO + COLEÇÕES -->
   <div class="shop-header">
     <h1 class="shop-titulo">shop</h1>
 
@@ -38,119 +34,114 @@
     </div>
   </div>
 
-  <!-- GRID DE PRODUTOS -->
   <section class="produtos-grid">
 
-    <!-- SARDINES -->
-    <article class="produto-card" data-colecao="sardines">
-      <div class="carrossel" data-carrossel>
-        <div class="carrossel-track">
-          <img src="sardines_tshirt.png" />
-          <img src="sardines_tshirt.png" />
-          <img src="sardines_tshirt.png" />
-        </div>
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-      </div>
+    <!-- SARDINES 01 -->
+    <article class="produto-card"
+      data-colecao="sardines"
+      data-nome="camiseta sardines 01"
+      data-preco="199.00"
+      data-imagem="sardines_tshirt.png">
+
+      <img src="sardines_tshirt.png" />
       <h2>camiseta sardines 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">malha premium • oversized</p>
-      <a href="#" class="botao-ver">ver produto</a>
+      <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
-    <article class="produto-card" data-colecao="sardines">
-      <div class="carrossel" data-carrossel>
-        <div class="carrossel-track">
-          <img src="sardine2.png"/>
-          <img src="sardine2_foto2.png"/>
-        </div>
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-      </div>
+    <!-- SARDINES 02 -->
+    <article class="produto-card"
+      data-colecao="sardines"
+      data-nome="camiseta sardines 02"
+      data-preco="199.00"
+      data-imagem="sardine2.png">
+
+      <img src="sardine2.png" />
       <h2>camiseta sardines 02</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">algodão 100% • conforto diário</p>
-      <a href="#" class="botao-ver">ver produto</a>
+      <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
     <!-- LOVED -->
-    <article class="produto-card" data-colecao="loved">
-      <div class="carrossel" data-carrossel>
-        <div class="carrossel-track">
-          <img src="camiseta3/frente.jpg" />
-          <img src="camiseta3/costas.jpg" />
-        </div>
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-      </div>
+    <article class="produto-card"
+      data-colecao="loved"
+      data-nome="camiseta loved 01"
+      data-preco="199.00"
+      data-imagem="camiseta3/frente.jpg">
+
+      <img src="camiseta3/frente.jpg" />
       <h2>camiseta loved 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">estampa minimal • unissex</p>
-      <a href="#" class="botao-ver">ver produto</a>
+      <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
     <!-- RIO -->
-    <article class="produto-card" data-colecao="rio">
-      <div class="carrossel" data-carrossel>
-        <div class="carrossel-track">
-          <img src="camiseta4/frente.jpg" />
-          <img src="camiseta4/costas.jpg" />
-        </div>
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-      </div>
+    <article class="produto-card"
+      data-colecao="rio"
+      data-nome="camiseta rio 01"
+      data-preco="199.00"
+      data-imagem="camiseta4/frente.jpg">
+
+      <img src="camiseta4/frente.jpg" />
       <h2>camiseta rio 01</h2>
       <p class="preco">r$ 199,00</p>
       <p class="descricao">caimento pesado • urbano</p>
-      <a href="#" class="botao-ver">ver produto</a>
+      <button class="add-cart-btn">adicionar ao carrinho</button>
     </article>
 
   </section>
 </main>
 
-<!-- FOOTER -->
 <footer class="rodape-site">
   <p>tee shirt club<br>feito com intenção</p>
-  <a href="https://instagram.com/teeshirtclub" target="_blank">@teeshirtclub</a>
 </footer>
 
-<!-- SCRIPT (pode ficar aqui ou em arquivo separado) -->
 <script>
-  /* FILTRO DE COLEÇÕES */
+  /* filtro coleções */
   const botoes = document.querySelectorAll('.colecao-btn');
   const produtos = document.querySelectorAll('.produto-card');
 
   botoes.forEach(botao => {
-    botao.addEventListener('click', () => {
+    botao.onclick = () => {
       botoes.forEach(b => b.classList.remove('ativo'));
       botao.classList.add('ativo');
 
       const colecao = botao.dataset.colecao;
-
-      produtos.forEach(produto => {
-        if (colecao === 'all' || produto.dataset.colecao === colecao) {
-          produto.style.display = 'flex';
-        } else {
-          produto.style.display = 'none';
-        }
+      produtos.forEach(p => {
+        p.style.display =
+          colecao === 'all' || p.dataset.colecao === colecao
+          ? 'flex'
+          : 'none';
       });
-    });
+    };
   });
 
-  /* CARROSSEL */
-  document.querySelectorAll('[data-carrossel]').forEach(carrossel => {
-    const track = carrossel.querySelector('.carrossel-track');
-    const slides = track.children;
-    let index = 0;
+  /* adicionar ao carrinho */
+  document.querySelectorAll('.add-cart-btn').forEach(btn => {
+    btn.onclick = () => {
+      const card = btn.closest('.produto-card');
 
-    carrossel.querySelector('.next').onclick = () => {
-      index = (index + 1) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-    };
+      const produto = {
+        nome: card.dataset.nome,
+        preco: Number(card.dataset.preco),
+        imagem: card.dataset.imagem,
+        quantidade: 1
+      };
 
-    carrossel.querySelector('.prev').onclick = () => {
-      index = (index - 1 + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const existente = carrinho.find(p => p.nome === produto.nome);
+
+      if (existente) {
+        existente.quantidade += 1;
+      } else {
+        carrinho.push(produto);
+      }
+
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      alert('produto adicionado ao carrinho 🛒');
     };
   });
 </script>
