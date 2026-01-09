@@ -10,35 +10,34 @@
 
 <!-- HEADER -->
 <header class="menu">
-  <div class="logo-container">
-    <img src="logo.png" alt="tee shirt club" class="logo" />
-  </div>
-  <nav class="nav-container">
-    <ul class="menu-list">
-      <li><a href="shop.html">shop</a></li>
-      <li><a href="cart.html">carrinho</a></li>
-    </ul>
-  </nav>
+  <img src="logo.png" alt="tee shirt club" class="logo" />
+
+  <ul class="menu-list">
+    <li><a href="shop.html">shop</a></li>
+    <li><a href="cart.html">carrinho</a></li>
+  </ul>
 </header>
 
-<!-- PRODUTO -->
-<main class="product-page">
+<!-- PRODUCT -->
+<main class="product-container">
 
-  <!-- GALERIA / CARROSSEL -->
-  <div class="product-gallery">
-    <div class="gallery-track" id="galleryTrack"></div>
+  <!-- CARROSSEL -->
+  <div class="product-carousel">
+    <div class="product-carousel-track" id="galleryTrack"></div>
     <button class="prev">‹</button>
     <button class="next">›</button>
   </div>
 
-  <!-- INFORMAÇÕES -->
+  <!-- INFO -->
   <div class="product-info">
     <h1 id="productName"></h1>
-    <p class="price" id="productPrice"></p>
-    <p class="description" id="productDescription"></p>
+    <p class="product-price" id="productPrice"></p>
+    <p class="product-collection">coleção fisher club</p>
+
+    <p class="product-description" id="productDescription"></p>
 
     <!-- TAMANHOS -->
-    <div class="sizes">
+    <div class="size-selector">
       <p>tamanho</p>
       <div class="size-options">
         <button data-size="pp">pp</button>
@@ -51,7 +50,9 @@
       </div>
     </div>
 
-    <button class="add-cart-btn">adicionar ao carrinho</button>
+    <div class="product-actions">
+      <button class="add-cart-btn">adicionar ao carrinho</button>
+    </div>
   </div>
 
 </main>
@@ -67,66 +68,40 @@
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer class="rodape-site">
+  <p>
+    tee shirt club<br>
+    feito com intenção
+  </p>
+  <a href="https://instagram.com/teeshirtclub" target="_blank">
+    @teeshirtclub
+  </a>
+</footer>
+
 <script>
-/* BASE DE PRODUTOS */
+/* PRODUTOS */
 const produtos = {
   sardines01: {
     nome: "camiseta sardines 01",
     preco: 199,
     descricao: `faz parte da coleção fisher club.
 
-essa camiseta foi desenvolvida em malha 30.1, com toque macio, caimento estruturado e alta durabilidade. é aquele tipo de peça que veste bem desde o primeiro uso e continua impecável com o tempo.
+camiseta produzida em malha 30.1, com toque macio, caimento estruturado e alta durabilidade.
 
-a estampa foi desenhada pela madu, que ama camisetas de sardinha e tudo o que carrega essa estética simples, irônica e cheia de personalidade. uma peça pensada pra quem gosta de vestir intenção, memória e identidade.`,
+a estampa foi desenhada pela madu, que ama camisetas de sardinha e tudo que carrega estética simples, irônica e cheia de memória.`,
     imagens: [
       "sardines_tshirt.png",
-      "sardines_tshirt.png"
-    ]
-  },
-
-  sardines02: {
-    nome: "camiseta sardines 02",
-    preco: 199,
-    descricao: `faz parte da coleção fisher club.
-
-confeccionada em malha 30.1, com conforto, resistência e caimento perfeito. uma peça versátil, feita para acompanhar o dia a dia com leveza e personalidade.`,
-    imagens: [
-      "sardine2.png",
-      "sardine2_foto2.png"
-    ]
-  },
-
-  loved01: {
-    nome: "camiseta loved 01",
-    preco: 199,
-    descricao: `da coleção loved.
-
-camiseta em malha 30.1, com toque suave e caimento confortável. uma peça minimal, pensada para quem acredita que o essencial também comunica.`,
-    imagens: [
-      "camiseta3/frente.jpg",
-      "camiseta3/costas.jpg"
-    ]
-  },
-
-  rio01: {
-    nome: "camiseta rio 01",
-    preco: 199,
-    descricao: `da coleção rio.
-
-malha 30.1 encorpada, caimento urbano e presença forte. inspirada na estética das ruas, no movimento e na liberdade de vestir quem você é.`,
-    imagens: [
-      "camiseta4/frente.jpg",
-      "camiseta4/costas.jpg"
+      "sardines_tshirt2.png"
     ]
   }
 };
 
-/* PEGA PRODUTO DA URL */
+/* URL */
 const params = new URLSearchParams(window.location.search);
-const produtoId = params.get("produto");
-const produto = produtos[produtoId];
+const produto = produtos[params.get("produto")];
 
-/* POPULA CONTEÚDO */
+/* POPULA */
 document.getElementById("productName").innerText = produto.nome;
 document.getElementById("productPrice").innerText = `r$ ${produto.preco},00`;
 document.getElementById("productDescription").innerText = produto.descricao;
@@ -153,11 +128,8 @@ document.querySelector(".prev").onclick = () => {
 let tamanhoSelecionado = null;
 document.querySelectorAll(".size-options button").forEach(btn => {
   btn.onclick = () => {
-    document
-      .querySelectorAll(".size-options button")
-      .forEach(b => b.classList.remove("ativo"));
-
-    btn.classList.add("ativo");
+    document.querySelectorAll(".size-options button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
     tamanhoSelecionado = btn.dataset.size;
   };
 });
@@ -168,63 +140,24 @@ function closeCartModal() {
   modal.classList.remove("show");
 }
 
-/* ADICIONAR AO CARRINHO */
+/* ADD CART */
 document.querySelector(".add-cart-btn").onclick = () => {
   if (!tamanhoSelecionado) {
     alert("selecione um tamanho");
     return;
   }
 
-  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
   carrinho.push({
     nome: produto.nome,
     preco: produto.preco,
     tamanho: tamanhoSelecionado,
     quantidade: 1
   });
-
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
   modal.classList.add("show");
 };
 </script>
-  <!-- TEXTO FINAL -->
-  <section class="texto-final">
-    <p>
-      obrigada por apoiar o que está sendo construído.<br>
-      obrigada por fazer parte desse tempo.<br><br>
 
-      seguimos, com fé<br>
-      e com o coração aberto pro que vem.
-    </p>
-  </section>
-
-  <!-- CONTATO -->
-  <section class="contato-section" id="contato">
-    <h2 class="titulo-contato">contato</h2>
-    <p class="texto-contato">
-      dúvidas ou parcerias<br>
-      fala com a gente
-    </p>
-
-    <div class="whatsapp-contato">
-      <a href="https://wa.me/5511999999999" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" class="icone-whatsapp">
-        +55 11 99999-9999
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="rodape-site">
-    <p>
-      tee shirt club<br>
-      feito com intenção 🤎
-    </p>
-
-    <a href="https://instagram.com/teeshirtclub" target="_blank">
-      @teeshirtclub
-    </a>
-  </footer>
 </body>
 </html>
