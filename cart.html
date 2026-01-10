@@ -101,7 +101,7 @@
     location.reload();
   }
 
-  async function checkout() {
+  function checkout() {
     const nome = document.getElementById('cliente-nome').value.trim();
     const telefone = document.getElementById('cliente-telefone').value.trim();
 
@@ -115,32 +115,24 @@
       return;
     }
 
-    btnCheckout.disabled = true;
-    btnCheckout.innerText = 'redirecionando...';
+    let mensagem = `🛒 *nova compra - tee shirt club*%0A%0A`;
+    mensagem += `👤 nome: ${nome}%0A`;
+    mensagem += `📱 telefone: ${telefone}%0A%0A`;
+    mensagem += `📦 *itens do pedido:*%0A%0A`;
 
-    try {
-      const response = await fetch('/.netlify/functions/criar-pagamento', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cliente: { nome, telefone },
-          carrinho: carrinho
-        })
-      });
+    carrinho.forEach(item => {
+      mensagem += `• ${item.nome}%0A`;
+      if (item.tamanho) mensagem += `  tamanho: ${item.tamanho.toUpperCase()}%0A`;
+      mensagem += `  quantidade: ${item.quantidade}%0A`;
+      mensagem += `  valor: r$ ${(item.preco * item.quantidade).toFixed(2)}%0A%0A`;
+    });
 
-      const data = await response.json();
+    mensagem += `💰 *total: r$ ${total.toFixed(2)}*`;
 
-      if (!data.link) {
-        throw new Error('link não retornado');
-      }
+    const telefoneLoja = '5511945163111';
+    const url = `https://wa.me/${telefoneLoja}?text=${mensagem}`;
 
-      window.location.href = data.link;
-
-    } catch (err) {
-      alert('erro ao iniciar pagamento. tente novamente.');
-      btnCheckout.disabled = false;
-      btnCheckout.innerText = 'finalizar compra';
-    }
+    window.open(url, '_blank');
   }
 </script>
 
