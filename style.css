@@ -85,7 +85,7 @@ body {
 }
 
 /* =========================
-   SEÇÕES PADRÃO
+   SEÇÕES PADRÃO (INDEX)
 ========================= */
 section {
   padding: 140px 24px;
@@ -117,6 +117,27 @@ section::before {
   font-size: 13px;
   color: #6b5e52;
   text-transform: lowercase;
+}
+
+/* =========================
+   CONTATO – INDEX (ISOLADO)
+========================= */
+.contato {
+  padding: 120px 24px;
+}
+
+.contato p,
+.contato a {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #6b5e52;
+  text-transform: lowercase;
+  line-height: 2;
+  text-decoration: none;
+}
+
+.contato a:hover {
+  color: #3e352c;
 }
 
 /* =========================
@@ -202,18 +223,23 @@ section::before {
   color: #6b5e52;
 }
 
-/* botão shop */
-.add-cart-btn {
-  margin-top: 12px;
-  background: none;
-  border: none;
+/* botão ver produto */
+.ver-produto-btn {
+  margin-top: 16px;
+  border: 1px solid rgba(62,53,44,0.4);
+  padding: 12px 0;
   font-size: 10px;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: lowercase;
-  color: #6b5e52;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(107,94,82,0.6);
-  cursor: pointer;
+  color: #3e352c;
+  background: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ver-produto-btn:hover {
+  background: #3e352c;
+  color: #fdfaf5;
 }
 
 /* =========================
@@ -251,21 +277,6 @@ section::before {
   gap: 12px;
 }
 
-.cart-modal-actions button,
-.cart-modal-actions .go-cart {
-  padding: 12px;
-  border-radius: 30px;
-  font-size: 13px;
-  border: 1px solid #000;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.cart-modal-actions .go-cart {
-  background: #000;
-  color: #fff;
-}
-
 /* =========================
    CARRINHO
 ========================= */
@@ -295,26 +306,20 @@ section::before {
   color: #6b5e52;
 }
 
-/* checkout */
-.checkout-form {
-  max-width: 900px;
-  margin: 40px auto 0;
-  padding: 0 20px;
-  display: flex;
-  gap: 20px;
+/* remover item */
+.remove-item-btn {
+  background: none;
+  border: none;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #a58b7a;
+  cursor: pointer;
 }
 
-.checkout-form label {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
-}
-
-.checkout-form input {
-  margin-top: 6px;
-  padding: 12px;
-  border: 1px solid #ddd;
+.remove-item-btn:hover {
+  text-decoration: underline;
+  color: #3e352c;
 }
 
 /* footer cart */
@@ -337,6 +342,25 @@ section::before {
 }
 
 /* =========================
+   PRODUCT
+========================= */
+.product-container {
+  max-width: 1100px;
+  margin: 120px auto 0;
+  padding: 0 6vw 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+}
+
+/* =========================
    FOOTER
 ========================= */
 .rodape-site {
@@ -355,6 +379,10 @@ section::before {
   .produtos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .product-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -364,228 +392,10 @@ section::before {
 
   .cart-item {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-  }
-
-  .cart-footer {
-    flex-direction: column;
-    gap: 20px;
   }
 
   .nomes {
     font-size: 42px;
   }
 }
-/* =========================
-   PRODUCT PAGE
-========================= */
-
-.product-container {
-  max-width: 1100px;
-  margin: 120px auto 0;
-  padding: 0 6vw 120px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-}
-
-/* imagem do produto */
-.product-image img {
-  width: 100%;
-  object-fit: cover;
-}
-
-/* informações */
-.product-info {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  text-align: left;
-}
-
-.product-info h1 {
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: lowercase;
-}
-
-.product-price {
-  font-size: 14px;
-  color: #3e352c;
-}
-
-/* coleção */
-.product-collection {
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: #6b5e52;
-  text-transform: lowercase;
-}
-
-/* descrição */
-.product-description {
-  font-size: 12px;
-  color: #6b5e52;
-  line-height: 1.8;
-}
-
-/* tamanhos */
-.size-selector {
-  margin-top: 20px;
-}
-
-.size-selector p {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  margin-bottom: 12px;
-  text-transform: lowercase;
-}
-
-.size-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.size-options button {
-  padding: 10px 16px;
-  background: none;
-  border: 1px solid #3e352c;
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.size-options button:hover {
-  background: rgba(62,53,44,0.08);
-}
-
-.size-options button.active {
-  background: #3e352c;
-  color: #fff;
-}
-
-/* botão comprar */
-.product-actions {
-  margin-top: 30px;
-}
-
-.product-actions button {
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 16px;
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  text-transform: lowercase;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.3s ease;
-}
-
-.product-actions button:hover {
-  opacity: 0.85;
-}
-
-/* =========================
-   RESPONSIVO — PRODUCT
-========================= */
-@media (max-width: 900px) {
-  .product-container {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    margin-top: 80px;
-  }
-
-  .product-info {
-    text-align: center;
-  }
-
-  .size-options {
-    justify-content: center;
-  }
-}
-/* =========================
-   PRODUCT – CARROSSEL
-========================= */
-
-.product-carousel {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.product-carousel-track {
-  display: flex;
-  transition: transform 0.45s ease;
-}
-
-.product-carousel img {
-  width: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
-  aspect-ratio: 3 / 4;
-}
-
-/* setas */
-.product-carousel button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(62,53,44,0.35);
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  width: 34px;
-  height: 34px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-.product-carousel .prev {
-  left: 8px;
-}
-
-.product-carousel .next {
-  right: 8px;
-}
-
-.product-carousel button:hover {
-  opacity: 0.7;
-}
-
-.rodape-site {
-  padding: 80px 24px;
-  background-color: #3e352c;
-  color: #fdfaf5;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: lowercase;
-}
-@media (max-width: 768px) {
-
-  .product-carousel {
-    max-width: 100%;
-  }
-
-  .product-carousel img {
-    aspect-ratio: 4 / 5;
-    border-radius: 8px;
-  }
-
-  .product-carousel button {
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-    background: rgba(0,0,0,0.35);
-  }
-
-}
-
-
