@@ -1,0 +1,12 @@
+{
+  "name": "tee-shirt-club",
+  "version": "1.0.0",
+  "description": "ecommerce tee shirt club com checkout mercado pago no netlify",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'no build step'"
+  },
+  "dependencies": {
+    "mercadopago": "^2.0.0"
+  }
+}
