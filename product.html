@@ -8,155 +8,96 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="menu">
-  <img src="logo.png" alt="tee shirt club" class="logo" />
-
-  <ul class="menu-list">
-    <li><a href="shop.html">shop</a></li>
-    <li><a href="cart.html">carrinho</a></li>
-  </ul>
+  <div class="logo-container">
+    <img src="logo.png" alt="tee shirt club" class="logo" />
+  </div>
+  <nav class="nav-container">
+    <ul class="menu-list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="shop.html">shop</a></li>
+      <li><a href="cart.html">carrinho</a></li>
+    </ul>
+  </nav>
 </header>
 
-<!-- PRODUCT -->
 <main class="product-container">
+  <img id="produto-imagem" class="produto-img" />
+  <div class="produto-info">
+    <h1 id="produto-nome"></h1>
+    <p class="preco">r$ 199,00</p>
 
-  <!-- CARROSSEL -->
-  <div class="product-carousel">
-    <div class="product-carousel-track" id="galleryTrack"></div>
-    <button class="prev">‹</button>
-    <button class="next">›</button>
+    <label>
+      tamanho
+      <select id="produto-tamanho">
+        <option value="">selecione</option>
+        <option value="p">p</option>
+        <option value="m">m</option>
+        <option value="g">g</option>
+        <option value="gg">gg</option>
+      </select>
+    </label>
+
+    <button onclick="addToCart()">adicionar ao carrinho</button>
   </div>
-
-  <!-- INFO -->
-  <div class="product-info">
-    <h1 id="productName"></h1>
-    <p class="product-price" id="productPrice"></p>
-    <p class="product-collection">coleção fisher club</p>
-
-    <p class="product-description" id="productDescription"></p>
-
-    <!-- TAMANHOS -->
-    <div class="size-selector">
-      <p>tamanho</p>
-      <div class="size-options">
-        <button data-size="pp">pp</button>
-        <button data-size="p">p</button>
-        <button data-size="m">m</button>
-        <button data-size="g">g</button>
-        <button data-size="gg">gg</button>
-        <button data-size="g1">g1</button>
-        <button data-size="g2">g2</button>
-      </div>
-    </div>
-
-    <div class="product-actions">
-      <button class="add-cart-btn">adicionar ao carrinho</button>
-    </div>
-  </div>
-
 </main>
 
-<!-- MODAL -->
-<div class="cart-modal" id="cartModal">
-  <div class="cart-modal-content">
-    <p>produto adicionado ao carrinho 🛒</p>
-    <div class="cart-modal-actions">
-      <button onclick="closeCartModal()">continuar comprando</button>
-      <a href="cart.html" class="go-cart">ir para o carrinho</a>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="rodape-site">
-  <p>
-    tee shirt club<br>
-    feito com intenção
-  </p>
-  <a href="https://instagram.com/teeshirtclub" target="_blank">
-    @teeshirtclub
-  </a>
-</footer>
-
 <script>
-/* PRODUTOS */
 const produtos = {
   sardines01: {
-    nome: "camiseta sardines 01",
+    nome: 'camiseta sardines 01',
     preco: 199,
-    descricao: `faz parte da coleção fisher club.
-
-camiseta produzida em malha 30.1, com toque macio, caimento estruturado e alta durabilidade.
-
-a estampa foi desenhada pela madu, que ama camisetas de sardinha e tudo que carrega estética simples, irônica e cheia de memória.`,
-    imagens: [
-      "sardines_tshirt.png",
-      "sardines_tshirt2.png"
-    ]
+    imagem: './sardines_tshirt.png'
+  },
+  sardines02: {
+    nome: 'camiseta sardines 02',
+    preco: 199,
+    imagem: './sardine2.png'
+  },
+  loved01: {
+    nome: 'camiseta loved 01',
+    preco: 199,
+    imagem: './camiseta3/frente.jpg'
+  },
+  rio01: {
+    nome: 'camiseta rio 01',
+    preco: 199,
+    imagem: './camiseta4/frente.jpg'
   }
 };
 
-/* URL */
 const params = new URLSearchParams(window.location.search);
-const produto = produtos[params.get("produto")];
+const key = params.get('produto');
+const produto = produtos[key];
 
-/* POPULA */
-document.getElementById("productName").innerText = produto.nome;
-document.getElementById("productPrice").innerText = `r$ ${produto.preco},00`;
-document.getElementById("productDescription").innerText = produto.descricao;
-
-/* CARROSSEL */
-const track = document.getElementById("galleryTrack");
-produto.imagens.forEach(img => {
-  const image = document.createElement("img");
-  image.src = img;
-  track.appendChild(image);
-});
-
-let index = 0;
-document.querySelector(".next").onclick = () => {
-  index = (index + 1) % produto.imagens.length;
-  track.style.transform = `translateX(-${index * 100}%)`;
-};
-document.querySelector(".prev").onclick = () => {
-  index = (index - 1 + produto.imagens.length) % produto.imagens.length;
-  track.style.transform = `translateX(-${index * 100}%)`;
-};
-
-/* TAMANHO */
-let tamanhoSelecionado = null;
-document.querySelectorAll(".size-options button").forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll(".size-options button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    tamanhoSelecionado = btn.dataset.size;
-  };
-});
-
-/* MODAL */
-const modal = document.getElementById("cartModal");
-function closeCartModal() {
-  modal.classList.remove("show");
+if (!produto) {
+  alert('produto não encontrado');
 }
 
-/* ADD CART */
-document.querySelector(".add-cart-btn").onclick = () => {
-  if (!tamanhoSelecionado) {
-    alert("selecione um tamanho");
+document.getElementById('produto-nome').innerText = produto.nome;
+document.getElementById('produto-imagem').src = produto.imagem;
+
+function addToCart() {
+  const tamanho = document.getElementById('produto-tamanho').value;
+
+  if (!tamanho) {
+    alert('selecione um tamanho');
     return;
   }
 
-  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
   carrinho.push({
     nome: produto.nome,
     preco: produto.preco,
-    tamanho: tamanhoSelecionado,
-    quantidade: 1
+    quantidade: 1,
+    tamanho: tamanho,
+    imagem: produto.imagem
   });
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  modal.classList.add("show");
-};
+
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  window.location.href = 'cart.html';
+}
 </script>
 
 </body>
