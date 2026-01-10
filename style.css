@@ -261,6 +261,18 @@ section::before {
   transition: all 0.3s ease;
 }
 
+.produto-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* imagem quadrada */
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.produto-card:hover img {
+  transform: scale(1.03);
+}
+
 .ver-produto-btn:hover {
   background: #3e352c;
   color: #fdfaf5;
