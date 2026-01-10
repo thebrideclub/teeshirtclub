@@ -4,7 +4,7 @@ export async function handler(event) {
 
     const items = carrinho.map(item => ({
       title: item.nome,
-      quantity: item.quantidade,
+      quantity: Number(item.quantidade),
       unit_price: Number(item.preco),
       currency_id: 'BRL'
     }));
@@ -14,16 +14,18 @@ export async function handler(event) {
       {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${process.env.MERCADO_PAGO_TOKEN}`,
+          Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           items,
-          payer: { name: cliente.nome },
+          payer: {
+            name: cliente.nome
+          },
           back_urls: {
-  success: 'https://teeshirtclub.netlify.app/sucesso.html',
-  failure: 'https://teeshirtclub.netlify.app/erro.html'
-},
+            success: 'https://teeshirtclub.netlify.app/sucesso.html',
+            failure: 'https://teeshirtclub.netlify.app/erro.html'
+          },
           auto_return: 'approved'
         })
       }
@@ -31,12 +33,21 @@ export async function handler(event) {
 
     const data = await response.json();
 
+    if (!response.ok) {
+      console.error('Mercado Pago erro:', data);
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: data })
+      };
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({ link: data.init_point })
     };
 
   } catch (err) {
+    console.error('Erro interno:', err);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'erro ao criar pagamento' })
