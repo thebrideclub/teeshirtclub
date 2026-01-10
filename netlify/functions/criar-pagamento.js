@@ -1,56 +1,53 @@
-export async function handler(event) {
+const MercadoPago = require('mercadopago');
+
+exports.handler = async (event) => {
   try {
+    if (event.httpMethod !== 'POST') {
+      return {
+        statusCode: 405,
+        body: JSON.stringify({ error: 'Método não permitido' })
+      };
+    }
+
     const { carrinho, cliente } = JSON.parse(event.body);
+
+    const mp = new MercadoPago({
+      accessToken: process.env.MP_ACCESS_TOKEN
+    });
 
     const items = carrinho.map(item => ({
       title: item.nome,
       quantity: Number(item.quantidade),
-      unit_price: Number(item.preco),
-      currency_id: 'BRL'
+      currency_id: 'BRL',
+      unit_price: Number(item.preco)
     }));
 
-    const response = await fetch(
-      'https://api.mercadopago.com/checkout/preferences',
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          items,
-          payer: {
-            name: cliente.nome
-          },
-          back_urls: {
-            success: 'https://teeshirtclub.netlify.app/sucesso.html',
-            failure: 'https://teeshirtclub.netlify.app/erro.html'
-          },
-          auto_return: 'approved'
-        })
+    const preference = await mp.preferences.create({
+      body: {
+        items,
+        payer: {
+          name: cliente.nome,
+          phone: { number: cliente.telefone }
+        }
       }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error('Mercado Pago erro:', data);
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: data })
-      };
-    }
+    });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ link: data.init_point })
+      body: JSON.stringify({
+        link: preference.init_point
+      })
     };
 
   } catch (err) {
-    console.error('Erro interno:', err);
+    console.error('ERRO FUNCTION:', err);
+
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'erro ao criar pagamento' })
+      body: JSON.stringify({
+        error: 'erro ao criar pagamento',
+        detalhe: err.message
+      })
     };
   }
-}
+};
