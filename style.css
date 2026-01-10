@@ -265,6 +265,26 @@ section::before {
   color: #3e352c;
   text-decoration: underline;
 }
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.cart-info h3 {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  font-weight: 400;
+}
+
+.cart-info p {
+  font-size: 11px;
+  color: #6b5e52;
+  letter-spacing: 0.08em;
+}
+
 
 /* =========================
    FORMULÁRIO CART
@@ -372,6 +392,20 @@ section::before {
   color: #fdfaf5;
   font-size: 10px;
   letter-spacing: 0.3em;
+  text-transform: lowercase;
+}
+
+#status {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #6b5e52;
+  margin-bottom: 48px;
+  text-transform: lowercase;
+}
+
+#total {
+  font-size: 12px;
+  letter-spacing: 0.25em;
   text-transform: lowercase;
 }
 
