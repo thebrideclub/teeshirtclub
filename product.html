@@ -23,17 +23,15 @@
 
 <main class="product-container">
 
-  <!-- CARROSSEL -->
-  <div class="product-carousel">
-    <div class="product-carousel-track" id="carousel-track">
-      <img id="produto-imagem" />
-    </div>
+  <!-- IMAGEM -->
+  <div class="product-gallery">
+    <img id="produto-imagem" alt="imagem do produto" />
   </div>
 
   <!-- INFO -->
   <div class="product-info">
     <h1 id="produto-nome"></h1>
-    <p class="product-price">r$ 199,00</p>
+    <p class="preco" id="produto-preco"></p>
 
     <!-- tamanhos -->
     <div class="size-selector">
@@ -47,9 +45,9 @@
     </div>
 
     <!-- ação -->
-    <div class="product-actions">
-      <button onclick="addToCart()">adicionar ao carrinho</button>
-    </div>
+    <button class="ver-produto-btn" onclick="addToCart()">
+      adicionar ao carrinho
+    </button>
   </div>
 
 </main>
@@ -91,9 +89,10 @@ if (!produto) {
 }
 
 document.getElementById('produto-nome').innerText = produto.nome;
+document.getElementById('produto-preco').innerText = `r$ ${produto.preco},00`;
 document.getElementById('produto-imagem').src = produto.imagem;
 
-// seleção de tamanho
+// tamanhos
 let tamanhoSelecionado = null;
 const botoesTamanho = document.querySelectorAll('.size-options button');
 
