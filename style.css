@@ -211,7 +211,7 @@ section::before {
   color: #3e352c;
 }
 
-. produto-card {
+. produto-card p {
       font-size: 13px;
   color: #6b5e52;
   text-transform: lowercase;
