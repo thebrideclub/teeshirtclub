@@ -143,24 +143,25 @@
 
 <script>
 /* =========================
-   FILTRO DE COLEÇÕES
+   FILTRO DE COLEÇÕES (FIX)
 ========================= */
 const botoes = document.querySelectorAll('.colecao-btn');
 const produtos = document.querySelectorAll('.produto-card');
 
 botoes.forEach(botao => {
-  botao.onclick = () => {
+  botao.addEventListener('click', () => {
     botoes.forEach(b => b.classList.remove('ativo'));
     botao.classList.add('ativo');
 
     const colecao = botao.dataset.colecao;
-    produtos.forEach(p => {
-      p.style.display =
-        colecao === 'all' || p.dataset.colecao === colecao
-          ? 'flex'
-          : 'none';
+
+    produtos.forEach(produto => {
+      const mostrar =
+        colecao === 'all' || produto.dataset.colecao === colecao;
+
+      produto.style.display = mostrar ? '' : 'none';
     });
-  };
+  });
 });
 
 /* =========================
@@ -176,15 +177,15 @@ document.querySelectorAll('.produto-card').forEach(card => {
   const next = card.querySelector('.carousel-btn.next');
   const prev = card.querySelector('.carousel-btn.prev');
 
-  next.onclick = () => {
+  next.addEventListener('click', () => {
     index = (index + 1) % total;
     images.style.transform = `translateX(-${index * 100}%)`;
-  };
+  });
 
-  prev.onclick = () => {
+  prev.addEventListener('click', () => {
     index = (index - 1 + total) % total;
     images.style.transform = `translateX(-${index * 100}%)`;
-  };
+  });
 });
 </script>
 
