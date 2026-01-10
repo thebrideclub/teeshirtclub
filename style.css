@@ -138,6 +138,11 @@ section::before {
   color: #6b5e52;
   text-transform: lowercase;
 }
+.sessao-como-chegar a {
+    font-size: 13px;
+  color: #6b5e52;
+  text-transform: lowercase;
+}
 /* =========================
    CONTATO (INDEX)
 ========================= */
