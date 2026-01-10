@@ -319,6 +319,49 @@ section::before {
   gap: 24px;
   text-align: left;
 }
+/* =========================
+   PRODUCT – TAMANHOS
+========================= */
+.size-selector {
+  margin-top: 24px;
+}
+
+.size-selector p {
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: lowercase;
+  color: #6b5e52;
+  margin-bottom: 14px;
+}
+
+.size-options {
+  display: flex;
+  gap: 14px;
+}
+
+.size-options button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(62,53,44,0.45);
+  background: none;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: #3e352c;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.size-options button:hover {
+  background: rgba(62,53,44,0.08);
+}
+
+.size-options button.active {
+  background: #3e352c;
+  color: #fdfaf5;
+  border-color: #3e352c;
+}
+
 
 /* =========================
    FOOTER
