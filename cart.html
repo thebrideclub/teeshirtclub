@@ -8,12 +8,10 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="menu">
   <div class="logo-container">
     <img src="logo.png" alt="tee shirt club" class="logo" />
   </div>
-
   <nav class="nav-container">
     <ul class="menu-list">
       <li><a href="index.html">home</a></li>
@@ -23,13 +21,11 @@
   </nav>
 </header>
 
-<!-- CARRINHO -->
 <main class="cart-container">
 
   <p id="status">carregando carrinho...</p>
   <div id="cart"></div>
 
-  <!-- DADOS DO CLIENTE -->
   <div class="checkout-form">
     <label>
       nome
@@ -44,96 +40,81 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="cart-footer">
   <p id="total">total: r$ 0,00</p>
-  <button id="btnCheckout" onclick="checkout()">finalizar compra</button>
+  <button onclick="checkout()">finalizar compra</button>
 </footer>
 
 <script>
-  const cartEl = document.getElementById('cart');
-  const statusEl = document.getElementById('status');
-  const totalEl = document.getElementById('total');
-  const btnCheckout = document.getElementById('btnCheckout');
+const cartEl = document.getElementById('cart');
+const statusEl = document.getElementById('status');
+const totalEl = document.getElementById('total');
 
-  let carrinho = [];
+const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-  try {
-    carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-  } catch {
-    carrinho = [];
+if (carrinho.length === 0) {
+  statusEl.innerText = 'seu carrinho está vazio.';
+}
+
+let total = 0;
+
+carrinho.forEach((item, index) => {
+  const subtotal = item.preco * item.quantidade;
+  total += subtotal;
+
+  const div = document.createElement('div');
+  div.className = 'cart-item';
+
+  div.innerHTML = `
+    <img src="${item.imagem}" alt="${item.nome}">
+    <div class="cart-info">
+      <h3>${item.nome}</h3>
+      <p>tamanho: ${item.tamanho.toUpperCase()}</p>
+      <p>quantidade: ${item.quantidade}</p>
+      <p>r$ ${subtotal.toFixed(2)}</p>
+      <button onclick="removeItem(${index})">remover</button>
+    </div>
+  `;
+
+  cartEl.appendChild(div);
+});
+
+totalEl.innerText = 'total: r$ ' + total.toFixed(2);
+
+function removeItem(index) {
+  carrinho.splice(index, 1);
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  location.reload();
+}
+
+function checkout() {
+  const nome = document.getElementById('cliente-nome').value.trim();
+  const telefone = document.getElementById('cliente-telefone').value.trim();
+
+  if (!nome || !telefone) {
+    alert('preencha nome e telefone 😊');
+    return;
   }
 
-  if (carrinho.length === 0) {
-    statusEl.innerText = 'seu carrinho está vazio.';
-  } else {
-    statusEl.remove();
-  }
+  let mensagem = `🛒 *nova compra - tee shirt club*\n\n`;
+  mensagem += `👤 nome: ${nome}\n`;
+  mensagem += `📱 telefone: ${telefone}\n\n`;
+  mensagem += `📦 *itens do pedido:*\n\n`;
 
-  let total = 0;
-
-  carrinho.forEach((item, index) => {
-    const subtotal = item.preco * item.quantidade;
-    total += subtotal;
-
-    const div = document.createElement('div');
-    div.className = 'cart-item';
-
-    div.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}">
-      <div class="cart-info">
-        <h3>${item.nome}</h3>
-        ${item.tamanho ? `<p>tamanho: ${item.tamanho.toUpperCase()}</p>` : ''}
-        <p>quantidade: ${item.quantidade}</p>
-        <p>r$ ${subtotal.toFixed(2)}</p>
-        <button onclick="removeItem(${index})">remover</button>
-      </div>
-    `;
-
-    cartEl.appendChild(div);
+  carrinho.forEach(item => {
+    mensagem += `• ${item.nome}\n`;
+    mensagem += `  tamanho: ${item.tamanho.toUpperCase()}\n`;
+    mensagem += `  quantidade: ${item.quantidade}\n`;
+    mensagem += `  valor: r$ ${(item.preco * item.quantidade).toFixed(2)}\n\n`;
   });
 
-  totalEl.innerText = 'total: r$ ' + total.toFixed(2);
+  mensagem += `💰 *total: r$ ${total.toFixed(2)}*`;
 
-  function removeItem(index) {
-    carrinho.splice(index, 1);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    location.reload();
-  }
+  const telefoneLoja = '5511945163111';
+  const url = `https://wa.me/${telefoneLoja}?text=${encodeURIComponent(mensagem)}`;
 
-  function checkout() {
-    const nome = document.getElementById('cliente-nome').value.trim();
-    const telefone = document.getElementById('cliente-telefone').value.trim();
-
-    if (!nome || !telefone) {
-      alert('por favor, preencha nome e telefone 😊');
-      return;
-    }
-
-    if (carrinho.length === 0) {
-      alert('seu carrinho está vazio');
-      return;
-    }
-
-    let mensagem = `🛒 *nova compra - tee shirt club*%0A%0A`;
-    mensagem += `👤 nome: ${nome}%0A`;
-    mensagem += `📱 telefone: ${telefone}%0A%0A`;
-    mensagem += `📦 *itens do pedido:*%0A%0A`;
-
-    carrinho.forEach(item => {
-      mensagem += `• ${item.nome}%0A`;
-      if (item.tamanho) mensagem += `  tamanho: ${item.tamanho.toUpperCase()}%0A`;
-      mensagem += `  quantidade: ${item.quantidade}%0A`;
-      mensagem += `  valor: r$ ${(item.preco * item.quantidade).toFixed(2)}%0A%0A`;
-    });
-
-    mensagem += `💰 *total: r$ ${total.toFixed(2)}*`;
-
-    const telefoneLoja = '5511945163111';
-    const url = `https://wa.me/${telefoneLoja}?text=${mensagem}`;
-
-    window.open(url, '_blank');
-  }
+  window.open(url, '_blank');
+}
 </script>
 
 </body>
