@@ -254,27 +254,29 @@ section::before {
 .carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1; /* mantém quadrado */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 16px;
 }
 
+/* trilho do carrossel (JS controla o translateX) */
 .carousel-images {
   display: flex;
-  width: 100%;
   height: 100%;
   transition: transform 0.4s ease;
 }
 
+/* imagens */
 .carousel-images img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-/* ZOOM SUAVE NO HOVER */
-.produto-card:hover .carousel-images {
+/* ZOOM SUAVE — agora SEM conflito */
+.produto-card:hover .carousel-images img {
   transform: scale(1.03);
 }
 
@@ -286,37 +288,31 @@ section::before {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
+  background: rgba(62,53,44,0.55); /* mesma paleta do site */
+  color: #fdfaf5;
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease, background 0.3s ease;
+  transition: opacity 0.25s ease, background 0.25s ease;
 }
 
-.carousel-btn.prev {
-  left: 10px;
-}
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
 
-.carousel-btn.next {
-  right: 10px;
-}
-
-/* MOSTRA SETAS NO HOVER */
 .produto-card:hover .carousel-btn {
   opacity: 1;
 }
 
 .carousel-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: #3e352c;
 }
 
 /* =========================
