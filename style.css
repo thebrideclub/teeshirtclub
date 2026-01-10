@@ -211,12 +211,6 @@ section::before {
   color: #3e352c;
 }
 
-. produto-card p {
-      font-size: 13px;
-  color: #6b5e52;
-  text-transform: lowercase;
-}
-
 /* grid */
 .produtos-grid {
   display: grid;
@@ -226,19 +220,31 @@ section::before {
   margin: 0 auto;
 }
 
-/* card */
-.produto-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 340px;
-  margin: 0 auto;
+/* =========================
+   PRODUTO CARD – TEXTOS
+========================= */
+
+/* Título */
+.produto-card h2 {
+  font-size: 13px;
+  color: #6b5e52;
+  text-transform: lowercase;
+  font-weight: 700; /* negrito */
 }
 
-.produto-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+/* Descrição */
+.produto-card .descricao {
+  font-size: 13px;
+  color: #6b5e52;
+  text-transform: lowercase;
+  font-weight: 400; /* normal */
+}
+
+/* (opcional) Preço */
+.produto-card .preco {
+  font-size: 13px;
+  color: #6b5e52;
+  text-transform: lowercase;
 }
 
 /* botão ver produto */
