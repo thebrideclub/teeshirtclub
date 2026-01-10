@@ -22,25 +22,41 @@
 </header>
 
 <main class="product-container">
-  <img id="produto-imagem" class="produto-img" />
-  <div class="produto-info">
-    <h1 id="produto-nome"></h1>
-    <p class="preco">r$ 199,00</p>
 
-    <label>
-      tamanho
-      <select id="produto-tamanho">
-        <option value="">selecione</option>
-        <option value="p">p</option>
-        <option value="m">m</option>
-        <option value="g">g</option>
-        <option value="gg">gg</option>
-      </select>
-    </label>
-
-    <button onclick="addToCart()">adicionar ao carrinho</button>
+  <!-- CARROSSEL -->
+  <div class="product-carousel">
+    <div class="product-carousel-track" id="carousel-track">
+      <img id="produto-imagem" />
+    </div>
   </div>
+
+  <!-- INFO -->
+  <div class="product-info">
+    <h1 id="produto-nome"></h1>
+    <p class="product-price">r$ 199,00</p>
+
+    <!-- tamanhos -->
+    <div class="size-selector">
+      <p>tamanho</p>
+      <div class="size-options">
+        <button data-size="p">p</button>
+        <button data-size="m">m</button>
+        <button data-size="g">g</button>
+        <button data-size="gg">gg</button>
+      </div>
+    </div>
+
+    <!-- ação -->
+    <div class="product-actions">
+      <button onclick="addToCart()">adicionar ao carrinho</button>
+    </div>
+  </div>
+
 </main>
+
+<footer class="rodape-site">
+  <p>tee shirt club<br>feito com intenção</p>
+</footer>
 
 <script>
 const produtos = {
@@ -77,10 +93,20 @@ if (!produto) {
 document.getElementById('produto-nome').innerText = produto.nome;
 document.getElementById('produto-imagem').src = produto.imagem;
 
-function addToCart() {
-  const tamanho = document.getElementById('produto-tamanho').value;
+// seleção de tamanho
+let tamanhoSelecionado = null;
+const botoesTamanho = document.querySelectorAll('.size-options button');
 
-  if (!tamanho) {
+botoesTamanho.forEach(btn => {
+  btn.onclick = () => {
+    botoesTamanho.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tamanhoSelecionado = btn.dataset.size;
+  };
+});
+
+function addToCart() {
+  if (!tamanhoSelecionado) {
     alert('selecione um tamanho');
     return;
   }
@@ -91,7 +117,7 @@ function addToCart() {
     nome: produto.nome,
     preco: produto.preco,
     quantidade: 1,
-    tamanho: tamanho,
+    tamanho: tamanhoSelecionado,
     imagem: produto.imagem
   });
 
