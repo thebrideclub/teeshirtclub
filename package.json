@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "checkout com mercadopago",
   "main": "index.js",
+  "type": "commonjs",
   "dependencies": {
     "mercadopago": "^2.0.15"
   }
